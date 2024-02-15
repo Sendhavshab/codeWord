@@ -8,18 +8,63 @@
     body {
         font-family: Arial, sans-serif;
         text-align: center;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    #outputText {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
     }
 </style>
 </head>
 <body>
-<h1>Code Word Converter</h1>
-<p>Enter your message:</p>
-<input type="text" id="inputText" placeholder="Enter your message">
-<button onclick="convertToCodeWord()">Convert to Code Word</button>
-<p>Enter your code word:</p>
-<input type="text" id="codeWord" placeholder="Enter your code word">
-<button onclick="convertToMessage()">Convert to Message</button>
-<p id="outputText"></p>
+<div class="container">
+    <h1>Code Word Converter</h1>
+    <p>Enter your message:</p>
+    <input type="text" id="inputText" placeholder="Enter your message">
+    <button onclick="convertToCodeWord()">Convert to Code Word</button>
+    
+    <p>Enter your code word:</p>
+    <input type="text" id="codeWord" placeholder="Enter your code word">
+    <button onclick="convertToMessage()">Convert to Message</button>
+    
+    <p id="outputText"></p>
+    <button onclick="copyCodeWord()">Copy Code Word</button>
+</div>
 <script>
     // Function to convert message to code word
     function convertToCodeWord() {
@@ -115,6 +160,26 @@
 
         document.getElementById("outputText").innerText = "Your code word: " + codeWord;
     }
+
+    // Function to copy code word to clipboard
+   // Function to copy code word to clipboard
+function copyCodeWord() {
+    var codeWord = document.getElementById("outputText").innerText.replace("Your code word: ", "");
+    navigator.clipboard.writeText(codeWord).then(function() {
+        var copiedMessage = document.createElement("span");
+        copiedMessage.textContent = "Copied!";
+        copiedMessage.style.color = "green";
+        var outputText = document.getElementById("outputText");
+        outputText.appendChild(copiedMessage);
+        setTimeout(function() {
+            outputText.removeChild(copiedMessage);
+        }, 1000);
+    }, function() {
+        alert("Failed to copy code word to clipboard.");
+    });
+}
+
+   
 
     // Function to convert code word to original message
     function convertToMessage() {
