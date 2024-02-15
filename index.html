@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Word Converter</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<h1>Code Word Converter</h1>
+<p>Enter your message:</p>
+<input type="text" id="inputText" placeholder="Enter your message">
+<button onclick="convertToCodeWord()">Convert to Code Word</button>
+<p>Enter your code word:</p>
+<input type="text" id="codeWord" placeholder="Enter your code word">
+<button onclick="convertToMessage()">Convert to Message</button>
+<p id="outputText"></p>
+<script>
+    // Function to convert message to code word
+    function convertToCodeWord() {
+        var inputText = document.getElementById("inputText").value.toLowerCase();
+        var codeWord = "";
+
+        // Logic to replace characters
+        for (var i = 0; i < inputText.length; i++) {
+            var char = inputText.charAt(i);
+            switch (char) {
+                case 'a':
+                    codeWord += 'q';
+                    break;
+                case 'b':
+                    codeWord += 'w';
+                    break;
+                case 'c':
+                    codeWord += 'e';
+                    break;
+                case 'd':
+                    codeWord += 'r';
+                    break;
+                case 'e':
+                    codeWord += 't';
+                    break;
+                case 'f':
+                    codeWord += 'y';
+                    break;
+                case 'g':
+                    codeWord += 'u';
+                    break;
+                case 'h':
+                    codeWord += 'i';
+                    break;
+                case 'i':
+                    codeWord += 'o';
+                    break;
+                case 'j':
+                    codeWord += 'p';
+                    break;
+                case 'k':
+                    codeWord += 'a';
+                    break;
+                case 'l':
+                    codeWord += 's';
+                    break;
+                case 'm':
+                    codeWord += 'd';
+                    break;
+                case 'n':
+                    codeWord += 'f';
+                    break;
+                case 'o':
+                    codeWord += 'g';
+                    break;
+                case 'p':
+                    codeWord += 'h';
+                    break;
+                case 'q':
+                    codeWord += 'j';
+                    break;
+                case 'r':
+                    codeWord += 'k';
+                    break;
+                case 's':
+                    codeWord += 'l';
+                    break;
+                case 't':
+                    codeWord += 'z';
+                    break;
+                case 'u':
+                    codeWord += 'x';
+                    break;
+                case 'v':
+                    codeWord += 'c';
+                    break;
+                case 'w':
+                    codeWord += 'v';
+                    break;
+                case 'x':
+                    codeWord += 'b';
+                    break;
+                case 'y':
+                    codeWord += 'n';
+                    break;
+                case 'z':
+                    codeWord += 'm';
+                    break;
+                default:
+                    codeWord += char;
+            }
+        }
+
+        document.getElementById("outputText").innerText = "Your code word: " + codeWord;
+    }
+
+    // Function to convert code word to original message
+    function convertToMessage() {
+        var codeWord = document.getElementById("codeWord").value.toLowerCase();
+        var message = "";
+
+        // Logic to replace characters
+        for (var i = 0; i < codeWord.length; i++) {
+            var char = codeWord.charAt(i);
+            switch (char) {
+                case 'q':
+                    message += 'a';
+                    break;
+                case 'w':
+                    message += 'b';
+                    break;
+                case 'e':
+                    message += 'c';
+                    break;
+                case 'r':
+                    message += 'd';
+                    break;
+                case 't':
+                    message += 'e';
+                    break;
+                case 'y':
+                    message += 'f';
+                    break;
+                case 'u':
+                    message += 'g';
+                    break;
+                case 'i':
+                    message += 'h';
+                    break;
+                case 'o':
+                    message += 'i';
+                    break;
+                case 'p':
+                    message += 'j';
+                    break;
+                case 'a':
+                    message += 'k';
+                    break;
+                case 's':
+                    message += 'l';
+                    break;
+                case 'd':
+                    message += 'm';
+                    break;
+                case 'f':
+                    message += 'n';
+                    break;
+                case 'g':
+                    message += 'o';
+                    break;
+                case 'h':
+                    message += 'p';
+                    break;
+                case 'j':
+                    message += 'q';
+                    break;
+                case 'k':
+                    message += 'r';
+                    break;
+                case 'l':
+                    message += 's';
+                    break;
+                case 'z':
+                    message += 't';
+                    break;
+                case 'x':
+                    message += 'u';
+                    break;
+                case 'c':
+                    message += 'v';
+                    break;
+                case 'v':
+                    message += 'w';
+                    break;
+                case 'b':
+                    message += 'x';
+                    break;
+                case 'n':
+                    message += 'y';
+                    break;
+                case 'm':
+                    message += 'z';
+                    break;
+                default:
+                    message += char;
+            }
+        }
+
+        document.getElementById("outputText").innerText = "Your message: " + message;
+    }
+</script>
+</body>
+</html>
