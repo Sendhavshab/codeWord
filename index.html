@@ -49,6 +49,10 @@
         font-size: 18px;
         font-weight: bold;
     }
+
+    #messageLabel {
+        color: green;
+    }
 </style>
 </head>
 <body>
@@ -66,215 +70,71 @@
     <button onclick="copyCodeWord()">Copy Code Word</button>
 </div>
 <script>
+    // Mapping object for character replacements
+    var charMap = {
+        'a': 'q', 'b': 'w', 'c': 'e', 'd': 'r', 'e': 't', 'f': 'y', 'g': 'u', 'h': 'i', 'i': 'o', 'j': 'p',
+        'k': 'a', 'l': 's', 'm': 'd', 'n': 'f', 'o': 'g', 'p': 'h', 'q': 'j', 'r': 'k', 's': 'l', 't': 'z',
+        'u': 'x', 'v': 'c', 'w': 'v', 'x': 'b', 'y': 'n', 'z': 'm'
+    };
+
+let confirm;
     // Function to convert message to code word
     function convertToCodeWord() {
+confirm = 1;
         var inputText = document.getElementById("inputText").value.toLowerCase();
         var codeWord = "";
 
         // Logic to replace characters
         for (var i = 0; i < inputText.length; i++) {
             var char = inputText.charAt(i);
-            switch (char) {
-                case 'a':
-                    codeWord += 'q';
-                    break;
-                case 'b':
-                    codeWord += 'w';
-                    break;
-                case 'c':
-                    codeWord += 'e';
-                    break;
-                case 'd':
-                    codeWord += 'r';
-                    break;
-                case 'e':
-                    codeWord += 't';
-                    break;
-                case 'f':
-                    codeWord += 'y';
-                    break;
-                case 'g':
-                    codeWord += 'u';
-                    break;
-                case 'h':
-                    codeWord += 'i';
-                    break;
-                case 'i':
-                    codeWord += 'o';
-                    break;
-                case 'j':
-                    codeWord += 'p';
-                    break;
-                case 'k':
-                    codeWord += 'a';
-                    break;
-                case 'l':
-                    codeWord += 's';
-                    break;
-                case 'm':
-                    codeWord += 'd';
-                    break;
-                case 'n':
-                    codeWord += 'f';
-                    break;
-                case 'o':
-                    codeWord += 'g';
-                    break;
-                case 'p':
-                    codeWord += 'h';
-                    break;
-                case 'q':
-                    codeWord += 'j';
-                    break;
-                case 'r':
-                    codeWord += 'k';
-                    break;
-                case 's':
-                    codeWord += 'l';
-                    break;
-                case 't':
-                    codeWord += 'z';
-                    break;
-                case 'u':
-                    codeWord += 'x';
-                    break;
-                case 'v':
-                    codeWord += 'c';
-                    break;
-                case 'w':
-                    codeWord += 'v';
-                    break;
-                case 'x':
-                    codeWord += 'b';
-                    break;
-                case 'y':
-                    codeWord += 'n';
-                    break;
-                case 'z':
-                    codeWord += 'm';
-                    break;
-                default:
-                    codeWord += char;
-            }
+            codeWord += charMap[char] || char; // Use charMap if available, otherwise use original character
         }
 
         document.getElementById("outputText").innerText = "Your code word: " + codeWord;
     }
 
-    // Function to copy code word to clipboard
-   // Function to copy code word to clipboard
-function copyCodeWord() {
-    var codeWord = document.getElementById("outputText").innerText.replace("Your code word: ", "");
-    navigator.clipboard.writeText(codeWord).then(function() {
-        var copiedMessage = document.createElement("span");
-        copiedMessage.textContent = "Copied!";
-        copiedMessage.style.color = "green";
-        var outputText = document.getElementById("outputText");
-        outputText.appendChild(copiedMessage);
-        setTimeout(function() {
-            outputText.removeChild(copiedMessage);
-        }, 1000);
-    }, function() {
-        alert("Failed to copy code word to clipboard.");
-    });
-}
-
-   
 
     // Function to convert code word to original message
     function convertToMessage() {
+        
         var codeWord = document.getElementById("codeWord").value.toLowerCase();
         var message = "";
-
+confirm = 2;
         // Logic to replace characters
         for (var i = 0; i < codeWord.length; i++) {
             var char = codeWord.charAt(i);
-            switch (char) {
-                case 'q':
-                    message += 'a';
-                    break;
-                case 'w':
-                    message += 'b';
-                    break;
-                case 'e':
-                    message += 'c';
-                    break;
-                case 'r':
-                    message += 'd';
-                    break;
-                case 't':
-                    message += 'e';
-                    break;
-                case 'y':
-                    message += 'f';
-                    break;
-                case 'u':
-                    message += 'g';
-                    break;
-                case 'i':
-                    message += 'h';
-                    break;
-                case 'o':
-                    message += 'i';
-                    break;
-                case 'p':
-                    message += 'j';
-                    break;
-                case 'a':
-                    message += 'k';
-                    break;
-                case 's':
-                    message += 'l';
-                    break;
-                case 'd':
-                    message += 'm';
-                    break;
-                case 'f':
-                    message += 'n';
-                    break;
-                case 'g':
-                    message += 'o';
-                    break;
-                case 'h':
-                    message += 'p';
-                    break;
-                case 'j':
-                    message += 'q';
-                    break;
-                case 'k':
-                    message += 'r';
-                    break;
-                case 'l':
-                    message += 's';
-                    break;
-                case 'z':
-                    message += 't';
-                    break;
-                case 'x':
-                    message += 'u';
-                    break;
-                case 'c':
-                    message += 'v';
-                    break;
-                case 'v':
-                    message += 'w';
-                    break;
-                case 'b':
-                    message += 'x';
-                    break;
-                case 'n':
-                    message += 'y';
-                    break;
-                case 'm':
-                    message += 'z';
-                    break;
-                default:
-                    message += char;
-            }
+            message += getKeyByValue(charMap, char) || char; // Use getKeyByValue function to find original character
         }
 
         document.getElementById("outputText").innerText = "Your message: " + message;
     }
+
+    // Function to get key by value from an object
+    function getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value);
+    }
+     
+  function copyCodeWord() {
+    if (confirm === 1) {
+       var codeWord = document.getElementById("outputText").innerText.replace("Your code word: ", ""); 
+    } else {
+        var codeWord = document.getElementById("outputText").innerText.replace("Your message: ", "");
+    }
+      
+      navigator.clipboard.writeText(codeWord).then(function() {
+          var copiedMessage = document.createElement("span");
+          copiedMessage.textContent = "Copied!";
+          copiedMessage.id = "messageLabel"; // Add id for styling
+          var outputText = document.getElementById("outputText");
+          outputText.innerHTML = ""; // Clear previous content
+          outputText.appendChild(copiedMessage);
+          setTimeout(function() {
+              outputText.innerHTML = ""; // Clear message after 1 second
+          }, 1000);
+      }, function() {
+          alert("Failed to copy code word to clipboard.");
+      });
+  }
 </script>
 </body>
 </html>
